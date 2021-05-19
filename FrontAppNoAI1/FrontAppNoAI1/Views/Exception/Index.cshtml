@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Exception Page";
+}
+
+<div id="app"
+     class="container body-content">
+    <div class="jumbotron">
+        <h1>Application Insights Demo</h1>
+        <p class="lead">
+
+        </p>
+    </div>
+    <div>
+        <p>
+            <a class="btn btn-default"
+               onclick="history.go(-1); return true;"
+               href="javascript:void(0)">Back</a>
+        </p>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/axios")
+}

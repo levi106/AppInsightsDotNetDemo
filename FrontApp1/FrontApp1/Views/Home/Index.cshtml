@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="app"
+     class="container body-content">
+    <div>
+        <h3>スタートアップの結果</h3>
+        <div>
+            <p>ページ読み込み時にバックエンドの API を呼び出した結果: @ViewBag.Result</p>
+        </div>
+        <h3>例外発生のデモ</h3>
+        <div>
+            <p>適当な値を入力してボタンをクリックすると ArgumentException が発生</p>
+            @using (Html.BeginForm("Index", "FrontException", FormMethod.Post))
+            {
+                <p>
+                    @Html.TextBox("type")
+                </p>
+                <p>
+                    <input class="btn btn-default" type="submit" value="Submit &raquo;" />
+                </p>
+            }
+        </div>
+        <div>
+            <p>ボタンをクリックすると、JavaScript のコード内で例外が発生する。</p>
+            <p>
+                <button class="btn btn-default"
+                        v-on:click="exceptionDemo()">
+                    Submit &raquo;
+                </button>
+            </p>
+        </div>
+        <h3>バックエンド呼び出しのデモ</h3>
+        <div>
+            <p>クリックするとバックエンドの GET メソッドを呼び出す。</p>
+            <p>
+                <button class="btn btn-default"
+                        v-on:click="getMethod1()">
+                    Submit &raquo;
+                </button>
+            </p>
+            <p v-text="getResult1"></p>
+        </div>
+        <div>
+            <p>数値を入力してクリックすると、バックエンドの GET メソッドを呼び出す。</p>
+            <p>バックエンドは指定された数値 (ミリ秒) だけ待ってから結果を返す。</p>
+            <p>
+                <input type="text"
+                       v-model="getInput2" />
+            </p>
+            <p>
+                <button class="btn btn-default"
+                        v-on:click="getMethod2()">
+                    Submit &raquo;
+                </button>
+            </p>
+            <p v-text="getResult2"></p>
+        </div>
+        <div>
+            <p>数字を入力してクリックすると、バックエンドの GET メソッドを呼び出す。</p>
+            <p>バックエンドは指定された ID を持つアカウントを SQL Database から取得して返す。</p>
+            <p>
+                <input type="text"
+                       v-model="getInput3" />
+            </p>
+            <p>
+                <button class="btn btn-default"
+                        v-on:click="getMethod3()">
+                    Submit &raquo;
+                </button>
+            </p>
+            <p v-text="getResult3"></p>
+        </div>
+        <div>
+            <p>文字列を入力してクリックすると、バックエンドの POST メソッドを呼び出す。</p>
+            <p>
+                <input type="text"
+                       v-model="message" />
+            </p>
+            <p>
+                <button class="btn btn-default"
+                        v-on:click="postMethod2()">
+                    Submit &raquo;
+                </button>
+            </p>
+            <p v-text="postResult1"></p>
+        </div>
+        @*@Html.ActionLink("Exception", "Index", "Exception", null, new { @class = "btn btn-default" })*@
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/axios")
+    @Scripts.Render("~/bundles/site")
+}
